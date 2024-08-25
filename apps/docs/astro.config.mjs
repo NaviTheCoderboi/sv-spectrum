@@ -7,8 +7,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://navithecoderboi.github.io',
-	base: 'sv-aria',
+	site: 'https://sv-aria.vercel.app/',
 	integrations: [
 		liveCode({
 			layout: '/src/components/LiveCodeLayout.astro',

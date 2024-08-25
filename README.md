@@ -6,7 +6,7 @@
 	 <img alt="" src="https://img.shields.io/npm/l/turbo.svg?style=for-the-badge&labelColor=000000&color=">
 
     <h4>
-    	<a href="https://navithecoderboi.github.io/sv-aria/">Documentation</a>
+    	<a href="https://sv-aria.vercel.app/">Documentation</a>
     	<span> · </span>
     	<a href="https://github.com/NaviTheCoderboi/sv-aria/issues">Report Bug</a>
 
