@@ -1,0 +1,74 @@
+---
+title: useHover
+description: Documentation for the useHover hook.
+---
+
+import { HoverDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles pointer hover interactions for an element. Normalizes behavior across browsers and platforms, and ignores emulated mouse events on touch devices.
+
+## Features
+
+useHover handles hover interactions for an element. A hover interaction begins when a user moves their pointer over an element, and ends when they move their pointer off of the element.
+
+Uses pointer events where available, with fallbacks to mouse and touch events
+Ignores emulated mouse events in mobile browsers
+useHover is similar to the [:hover](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover) pseudo class in CSS, but :hover is problematic on touch devices due to mouse emulation in mobile browsers. Depending on the browser and device, :hover may never apply, or may apply continuously until the user touches another element. useHover only applies when the pointer is truly capable of hovering, and emulated mouse events are ignored.
+
+## Accessibility
+
+Hover interactions should never be the only way to interact with an element because they are not supported across all devices. Alternative interactions should be provided on touch devices, for example a long press or an explicit button to tap.
+
+In addition, even on devices with hover support, users may be using a keyboard or screen reader to navigate your app, which also do not trigger hover events. Hover interactions should be paired with focus events in order to expose the content to keyboard users.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { useHover } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	const { hoverProps, isHovered } = useHover({
+		onHoverStart: (e) => events.push(`hover start with ${e.pointerType}`),
+		onHoverEnd: (e) => events.push(`hover end with ${e.pointerType}`),
+	});
+</script>
+
+<button
+	{...hoverProps}
+	style="background: {isHovered()
+		? 'darkgreen'
+		: 'green'}; color: white; display: inline-block; padding: 4px; cursor: pointer;"
+>
+	Hover me!
+</button>
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={HoverDocs.props} />
+
+### Events
+
+<Events props={HoverDocs.events} />
+
+Each of these handlers is fired with a HoverEvent, which exposes information about the target and the type of event that triggered the interaction.
+
+<Other props={HoverDocs.other.HoverEvent} />
+
+### Returns
+
+<Returns props={HoverDocs.returns} />

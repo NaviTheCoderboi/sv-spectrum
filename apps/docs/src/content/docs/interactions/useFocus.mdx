@@ -1,0 +1,65 @@
+---
+title: useFocus
+description: Documentation for the useFocus hook.
+---
+
+import { FocusDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles focus events for the immediate target. Focus events on child elements will be ignored.
+
+## Features
+
+useFocus handles focus interactions for an element. Unlike React's built-in focus events, useFocus does not fire focus events for child elements of the target. This matches DOM behavior where focus events do not bubble. This is similar to the [:focus](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus) pseudo class in CSS.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { useFocus } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	const { isFocused, focusProps } = useFocus({
+		onFocus: () => events.push('focus'),
+		onBlur: () => events.push('blur'),
+		onFocusChange: (isFocused) => events.push(`focus change: ${isFocused}`),
+	});
+</script>
+
+<div>isFocused: {isFocused()}</div>
+
+<label for="example">Example</label>
+<input {...focusProps} id="example" />
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+
+<style>
+	input {
+		background-color: #71717a;
+		border-radius: 4px;
+		outline: 2px solid #a1a1aa;
+	}
+</style>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={FocusDocs.props} />
+
+### Events
+
+<Events props={FocusDocs.events} />
+
+### Returns
+
+<Returns props={FocusDocs.returns} />

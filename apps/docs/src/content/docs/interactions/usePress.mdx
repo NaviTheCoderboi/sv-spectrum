@@ -1,0 +1,81 @@
+---
+title: usePress
+description: Documentation for the usePress hook.
+---
+
+import { PressDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles press interactions across mouse, touch, keyboard, and screen readers. It normalizes behavior across browsers and platforms, and handles many nuances of dealing with pointer and keyboard events.
+
+## Features
+
+usePress handles press interactions across mouse, touch, keyboard, and screen readers. A press interaction starts when a user presses down with a mouse or their finger on the target, and ends when they move the pointer off the target. It may start again if the pointer re-enters the target. usePress returns the current press state, which can be used to adjust the visual appearance of the target. If the pointer is released over the target, then an onPress event is fired.
+
+-   Handles mouse and touch events
+-   Handles Enter or Space key presses
+-   Handles screen reader virtual clicks
+-   Uses pointer events where available, with fallbacks to mouse and touch events
+-   Normalizes focus behavior on mouse and touch interactions across browsers
+-   Handles disabling text selection on mobile while the press interaction is active
+-   Handles canceling press interactions on scroll
+-   Normalizes many cross browser inconsistencies
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { usePress } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	let { isPressed, pressProps } = usePress({
+		onPressStart: (e) => events.push(`press start with ${e.pointerType}`),
+		onPressEnd: (e) => events.push(`press end with ${e.pointerType}`),
+		onPress: (e) => events.push(`press with ${e.pointerType}`),
+	});
+</script>
+
+<div
+	{...pressProps}
+	style="background: {isPressed()
+		? 'darkgreen'
+		: 'green'};color: white;display: inline-block;padding: 4px;cursor: pointer;
+	"
+	role="button"
+	tabindex={0}
+>
+	Press me!
+</div>
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={PressDocs.props} />
+
+### Events
+
+<Events props={PressDocs.events} />
+
+Each of these handlers is fired with a PressEvent, which exposes information about the target and the type of event that triggered the interaction.
+
+<Other props={PressDocs.other.PressEvent} />
+
+#### Methods
+
+<Other props={PressDocs.other.methods} />
+
+### Returns
+
+<Returns props={PressDocs.returns} />

@@ -1,0 +1,81 @@
+---
+title: useLongPress
+description: Documentation for the useLongPress hook.
+---
+
+import { LongPressDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles long press interactions across mouse and touch devices. Supports a customizable time threshold, accessibility description, and normalizes behavior across browsers and devices.
+
+## Features
+
+useLongPress handles long press interactions across both mouse and touch devices. A long press is triggered when a user presses and holds their pointer over a target for a minimum period of time. If the user moves their pointer off of the target before the time threshold, the interaction is canceled. Once a long press event is triggered, other pointer interactions that may be active such as usePress and useMove will be canceled so that only the long press is activated.
+
+-   Handles mouse and touch events
+-   Uses pointer events where available, with fallbacks to mouse and touch events
+-   Ignores emulated mouse events in mobile browsers
+-   Prevents text selection on touch devices while long pressing
+-   Prevents browser and OS context menus from appearing while long pressing
+-   Customizable time threshold for long press
+-   Supports an accessibility description to indicate to assistive technology users that a long press action is available
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { mergeProps } from '@sv-aria/utils';
+	import { usePress, useLongPress } from '@sv-aria/interactions';
+
+	let mode = $state('Activate');
+	let events = $state<string[]>([]);
+
+	let { longPressProps } = useLongPress({
+		accessibilityDescription: 'Long press to activate hyper speed',
+		onLongPressStart: (e) =>
+			events.push(`long press start with ${e.pointerType}`),
+		onLongPressEnd: (e) =>
+			events.push(`long press end with ${e.pointerType}`),
+		onLongPress: (e) => {
+			mode = 'Hyper speed';
+			events.push(`long press with ${e.pointerType}`);
+		},
+	});
+
+	let { pressProps } = usePress({
+		onPress: (e) => {
+			mode = 'Normal speed';
+			events.push(`press with ${e.pointerType}`);
+		},
+	});
+</script>
+
+<button {...mergeProps(pressProps, longPressProps)}>{mode}</button>
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={LongPressDocs.props} />
+
+### Events
+
+<Events props={LongPressDocs.events} />
+
+Each of these handlers is fired with a LongPressEvent, which exposes information about the target and the type of event that triggered the interaction.
+
+<Other props={LongPressDocs.other.LongPressEvent} />
+
+### Returns
+
+<Returns props={LongPressDocs.returns} />

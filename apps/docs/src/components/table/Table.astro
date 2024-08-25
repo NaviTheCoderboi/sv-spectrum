@@ -1,0 +1,21 @@
+---
+import { twMerge } from 'tailwind-merge';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'table'> {
+	className?: string;
+}
+
+const props = Astro.props;
+
+const { className, ...otherProps } = props;
+---
+
+<div class="w-full overflow-auto rounded-md not-content">
+	<table
+		class={twMerge('w-full caption-bottom text-base', className)}
+		{...otherProps}
+	>
+		<slot />
+	</table>
+</div>

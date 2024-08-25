@@ -1,0 +1,62 @@
+---
+title: useKeyboard
+description: Documentation for the useKeyboard hook.
+---
+
+import { KeyboardDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles keyboard interactions for a focusable element.
+
+## Features
+
+useKeyboard handles keyboard interactions. The only difference from DOM events is that propagation is stopped by default if there is an event handler, unless event.continuePropagation() is called. This provides better modularity by default, so that a parent component doesn't respond to an event that a child already handled. If the child doesn't handle the event (e.g. it was for an unknown key), it can call event.continuePropagation() to allow parents to handle the event.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { useKeyboard } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	const { keyboardProps } = useKeyboard({
+		onKeyDown: (e) => events.push(`key down: ${e.key}`),
+		onKeyUp: (e) => events.push(`key up: ${e.key}`),
+	});
+</script>
+
+<label for="example">Example</label>
+<input {...keyboardProps} id="example" />
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+
+<style>
+	input {
+		background-color: #71717a;
+		border-radius: 4px;
+		outline: 2px solid #a1a1aa;
+	}
+</style>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={KeyboardDocs.props} />
+
+### Events
+
+<Events props={KeyboardDocs.events} />
+
+### Returns
+
+<Returns props={KeyboardDocs.returns} />

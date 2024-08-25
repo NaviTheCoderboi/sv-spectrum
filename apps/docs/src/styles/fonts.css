@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('../assets/fonts/Inter-VariableFont_opsz,wght.ttf');
+}
+
+@font-face {
+	font-family: 'Inter italic';
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf');
+}
+
+:root {
+	--sl-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+		'Noto Color Emoji';
+}

@@ -1,0 +1,78 @@
+---
+title: useInteractOutside
+description: Documentation for the useInteractOutside hook.
+---
+
+import { InteractOutsideDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles interactions outside of an element.
+
+## Features
+
+Handles interactions outside of an element. Useful for dropdowns, modals, and other components that should close when the user clicks outside of them.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { interactOutsideAction } from '@sv-aria/interactions';
+
+	let open = $state(false);
+</script>
+
+<button onclick={() => (open = true)}>Open</button>
+{#if open}
+	<div class="backdrop">
+		<div
+			use:interactOutsideAction={{
+				onInteractOutside: () => (open = false),
+				onInteractOutsideStart: () => {
+					console.log('onInteractOutsideStart');
+				},
+			}}
+			class="modal"
+		>
+			<button onclick={() => (open = false)}>Close</button>
+		</div>
+	</div>
+{/if}
+
+<style>
+	.backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.modal {
+		width: 30%;
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.5rem;
+	}
+</style>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={InteractOutsideDocs.props} />
+
+### Events
+
+<Events props={InteractOutsideDocs.events} />
+
+### Returns
+
+<Returns props={InteractOutsideDocs.returns} />

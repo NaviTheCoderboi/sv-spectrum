@@ -1,0 +1,31 @@
+.social-icons > a > svg {
+	--sl-icon-size: 1.3em !important;
+}
+
+starlight-theme-select > label {
+	--sl-label-icon-size: 1.3em;
+}
+
+starlight-theme-select > label > select {
+	outline: none;
+}
+
+#starlight__sidebar a {
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+}
+
+#starlight__sidebar a[aria-current='page'] {
+	background-color: black !important;
+	color: theme(colors.orange.500) !important;
+	border-radius: 0px !important;
+	border-left: 2px solid theme(colors.orange.500) !important;
+}
+
+[data-theme='light'] #starlight__sidebar a[aria-current='page'] {
+	background-color: #fff !important;
+}
+
+.tablist-wrapper {
+	overflow-x: unset !important;
+}

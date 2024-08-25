@@ -1,0 +1,49 @@
+{
+	"name": "@sv-aria/interactions",
+	"version": "1.0.0",
+	"main": "src/index.ts",
+	"author": {
+		"name": "NaviTheCoderboi",
+		"url": "https://github.com/NaviTheCoderboi"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/NaviTheCoderboi/sv-aria",
+		"directory": "packages/interactions"
+	},
+	"type": "module",
+	"license": "MIT",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./docs": {
+			"import": "./dist/hooks/docs.js",
+			"types": "./dist/hooks/docs.d.ts",
+			"svelte": "./dist/hooks/docs.js",
+			"default": "./dist/hooks/docs.js"
+		}
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"build": "sucker bundle ./src -ts ./tsconfig.json -o ./dist -p neutral -c -d"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"svelte": "5.0.0-next.233"
+	},
+	"peerDependencies": {
+		"svelte": "5.0.0-next.233"
+	},
+	"dependencies": {
+		"@sv-aria/docs-utils": "workspace:*",
+		"@sv-aria/utils": "workspace:*",
+		"@sv-types/shared": "workspace:*",
+		"svelte-contextify": "^1.0.4"
+	}
+}

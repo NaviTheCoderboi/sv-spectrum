@@ -1,0 +1,46 @@
+{
+	"name": "root",
+	"private": true,
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/NaviTheCoderboi/sv-aria"
+	},
+	"author": {
+		"name": "NaviTheCoderboi",
+		"url": "https://github.com/NaviTheCoderboi"
+	},
+	"scripts": {
+		"dev": "turbo run dev",
+		"ci": "turbo build:packages lint typecheck",
+		"format": "prettier --write .",
+		"build": "turbo run build",
+		"build:packages": "turbo run build --filter=./packages/*",
+		"lint": "pnpm run lint:packages && pnpm run lint:apps",
+		"lint:packages": "biome lint --error-on-warnings ./packages",
+		"lint:apps": "biome lint --error-on-warnings ./apps",
+		"typecheck": "turbo typecheck",
+		"changeset:version": "changeset version",
+		"changeset:check": "changeset status --since=main",
+		"release": "turbo run publish",
+		"publish": "changeset publish"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@types/node": "^22.5.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"rimraf": "^6.0.1",
+		"svelte": "5.0.0-next.233",
+		"turbo": "^2.0.14",
+		"typescript": "^5.5.4"
+	},
+	"dependencies": {
+		"@changesets/changelog-github": "^0.5.0",
+		"@changesets/cli": "^2.27.7",
+		"@sv-aria/sucker": "workspace:*",
+		"esbuild": "^0.23.1",
+		"svelte2tsx": "^0.7.16"
+	},
+	"packageManager": "pnpm@9.6.0"
+}

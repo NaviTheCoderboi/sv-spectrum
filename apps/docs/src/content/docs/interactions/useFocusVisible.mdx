@@ -1,0 +1,54 @@
+---
+title: useFocusVisible
+description: Documentation for the useFocusVisible hook.
+---
+
+import { FocusVisibleDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Manages focus visible state for the page, and subscribes individual components for updates.
+
+## Features
+
+useFocusVisible handles focus interactions for the page and determines whether keyboard focus should be visible (e.g. with a focus ring). Focus visibility is computed based on the current interaction mode of the user. When the user interacts via a mouse or touch, then focus is not visible. When the user interacts via a keyboard or screen reader, then focus is visible. This is similar to the [:focus-visible](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible) pseudo class in CSS.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { useFocusVisible } from '@sv-aria/interactions';
+
+	const { isFocusVisible } = useFocusVisible({
+		isTextInput: true,
+	});
+</script>
+
+<div>Focus visible: {String(isFocusVisible())}</div>
+<label style="display: block;">
+	First Name: <input />
+</label>
+<label style="display: block;">
+	Last Name: <input />
+</label>
+
+<style>
+	input {
+		background-color: #71717a;
+		border-radius: 4px;
+		outline: 2px solid #a1a1aa;
+	}
+</style>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={FocusVisibleDocs.props} />
+
+### Returns
+
+<Returns props={FocusVisibleDocs.returns} />

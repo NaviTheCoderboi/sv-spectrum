@@ -1,0 +1,52 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"formatter": {
+		"enabled": false
+	},
+	"linter": {
+		"include": ["**/*.ts", "**/*.svelte", "**/*.astro"],
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noEmptyBlockStatements": "off"
+			},
+			"style": {
+				"noParameterAssign": "off",
+				"noNonNullAssertion": "off"
+			}
+		},
+		"ignore": [
+			"**/.github/**",
+			"CHANGELOG.md",
+			"**/.contentlayer",
+			"**/node_modules/**",
+			"**/.svelte-kit/**",
+			".svelte-kit/**/*",
+			"**/dist/**",
+			"**/build/**",
+			"**/*.js",
+			"**/*.mjs",
+			"**/*.mdx",
+			"**/.astro/**"
+		]
+	},
+	"overrides": [
+		{
+			"include": ["**/*.svelte.ts", "**/*.svelte", "**/*.astro"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedLabels": "off",
+						"noUndeclaredVariables": "off"
+					},
+					"style": {
+						"useConst": "off"
+					}
+				}
+			}
+		}
+	]
+}

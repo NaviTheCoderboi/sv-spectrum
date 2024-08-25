@@ -1,0 +1,41 @@
+{
+	"name": "@sv-aria/utils",
+	"version": "1.0.0",
+	"author": {
+		"name": "NaviTheCoderboi",
+		"url": "https://github.com/NaviTheCoderboi"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/NaviTheCoderboi/sv-aria",
+		"directory": "packages/utils"
+	},
+	"main": "src/index.ts",
+	"type": "module",
+	"license": "MIT",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"build": "sucker bundle ./src -ts ./tsconfig.json -o ./dist -p neutral -c -d"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"svelte": "5.0.0-next.233"
+	},
+	"peerDependencies": {
+		"svelte": "5.0.0-next.233"
+	},
+	"dependencies": {
+		"@sv-types/shared": "workspace:*",
+		"clsx": "^2.1.1",
+		"svelte-contextify": "^1.0.4"
+	}
+}

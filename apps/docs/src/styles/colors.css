@@ -1,0 +1,22 @@
+:root {
+	--sl-color-bg-nav: #000;
+	--sl-color-bg-sidebar: var(--sl-color-bg-nav);
+	--title-color: #fff;
+	--muted: 240 3.7% 15.9%;
+	--muted-foreground: 240 5% 64.9%;
+}
+
+[data-theme='light'] {
+	--sl-color-bg-nav: #fff;
+	--title-color: #000;
+	--muted: 240 4.8% 95.9%;
+	--muted-foreground: 240 3.8% 46.1%;
+}
+
+.social-icons > a > svg {
+	--sl-icon-color: #fff;
+}
+
+[data-theme='light'] .social-icons > a > svg {
+	--sl-icon-color: #000;
+}

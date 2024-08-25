@@ -1,0 +1,60 @@
+---
+import * as Table from "../table";
+import { Code } from '@astrojs/starlight/components';
+import type { Obj, PropSchema } from '@sv-aria/docs-utils';
+
+interface Props {
+	props: Obj<Record<string, unknown>, PropSchema>;
+}
+
+const { props } = Astro.props;
+---
+
+<Table.Root>
+	<Table.Header>
+		<Table.Row className="w-1/4">
+			<Table.Head className="w-[25%] whitespace-nowrap pr-1"
+				>Name</Table.Head
+			>
+			<Table.Head className="w-[35%] whitespace-nowrap pr-1"
+				>Type</Table.Head
+			>
+			<Table.Head className="w-[40%] whitespace-nowrap"
+				>Description</Table.Head
+			>
+		</Table.Row>
+	</Table.Header>
+	<Table.Body>
+		{
+			Object.entries(props).map(([name, prop]) => (
+				<Table.Row>
+                    <Table.Cell className="flex items-center gap-1 pr-1 align-baseline">
+					    {name}
+                        {prop.required && (
+                            <div class="pb-1 text-red-500">*</div>
+						    <span class="sr-only">Required</span>
+                        )}
+                    </Table.Cell>
+                    <Table.Cell class="pr-1 align-baseline">
+						<Code 
+							lang="typescript"
+							code={prop.type}
+						/>
+					</Table.Cell>
+					<Table.Cell class="align-baseline">
+						<p class="text-sm leading-[1.3rem]">
+						{prop.description}
+						</p>
+						<div class="mt-2 h-auto px-0 text-zinc-600 dark:text-zinc-400">
+							Default:
+							{prop.default ? prop.default : (
+								<span aria-hidden="true"> &nbsp;—— </span>
+								<span class="sr-only"> undefined </span>
+							)}
+						</div>
+				</Table.Cell>
+				</Table.Row>
+			))
+		}
+	</Table.Body>
+</Table.Root>

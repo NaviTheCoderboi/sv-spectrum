@@ -1,0 +1,44 @@
+---
+title: Getting Started
+description: Learn how to start using Svelte aria in your project.
+---
+
+import { PackageManagers } from 'starlight-package-managers';
+
+Learn how to start using Svelte aria in your project.
+
+## Installation
+
+Svelte Aria can be installed using a package manager like npm or yarn. Currently only `interactions` hooks are available.
+
+<PackageManagers pkg="@sv-aria/interactions" />
+
+## Usage
+
+```svelte title="src/routes/+page.svelte"
+<script lang="ts">
+	import { useHover } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	const { hoverProps, isHovered } = useHover({
+		onHoverStart: (e) => events.push(`hover start with ${e.pointerType}`),
+		onHoverEnd: (e) => events.push(`hover end with ${e.pointerType}`),
+	});
+</script>
+
+<button
+	{...hoverProps}
+	style="background: {isHovered()
+		? 'darkgreen'
+		: 'green'}; color: white; display: inline-block; padding: 4px; cursor: pointer;"
+>
+	Hover me!
+</button>
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+```

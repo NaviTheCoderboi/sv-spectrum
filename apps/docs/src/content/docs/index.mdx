@@ -1,0 +1,41 @@
+---
+title: Build accessible and beautiful sites
+description: Get started building accessible and beautiful sites with sv-aria
+template: splash
+hero:
+    tagline: A lot of components and hooks with adaptive interactions, top-class accessibility , ready to be desgined and shiped!
+    image:
+        file: ../../assets/logo.png
+    actions:
+        - text: Getting started
+          link: /overview/getting-started/
+          icon: right-arrow
+          variant: primary
+        - text: View on GitHub
+          link: https://github.com/navithecoderboi
+          icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="High quality interactions" icon="pencil">
+		Svelte aria ensures a great experience for users, no matter their
+		device. All components are optimized for mouse, touch, keyboard, and
+		screen reader interactions.
+	</Card>
+	<Card title="Top-class accessibility" icon="document">
+		Accessibility is a first-class citizen in Svelte aria. All components
+		are designed to be fully accessible, and are tested with screen readers
+		to ensure compatibility.
+	</Card>
+	<Card title="Customizable" icon="setting">
+		All components are designed to be easily customized to fit your brand.
+		You can use raw hooks and build you custom components.
+	</Card>
+	<Card title="Ready to ship" icon="rocket">
+		With a focus on performance and accessibility, Svelte aria is ready to
+		be used in production. All components are well-tested and optimized for
+		performance.
+	</Card>
+</CardGrid>

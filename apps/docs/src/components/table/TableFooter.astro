@@ -1,0 +1,19 @@
+---
+import { twMerge } from 'tailwind-merge';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'tfoot'> {
+	className?: string;
+}
+
+const props = Astro.props;
+
+const { className, ...otherProps } = props;
+---
+
+<tfoot
+	class={twMerge('bg-primary text-primary-foreground font-medium', className)}
+	{...otherProps}
+>
+	<slot />
+</tfoot>

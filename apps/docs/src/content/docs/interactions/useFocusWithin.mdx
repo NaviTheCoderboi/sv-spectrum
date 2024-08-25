@@ -1,0 +1,76 @@
+---
+title: useFocusWithin
+description: Documentation for the useFocusWithin hook.
+---
+
+import { FocusWithinDocs } from '@sv-aria/interactions/docs';
+import Parameters from '../../../components/docs/Parameters.astro';
+import Events from '../../../components/docs/Events.astro';
+import Returns from '../../../components/docs/Returns.astro';
+import Other from '../../../components/docs/Other.astro';
+
+Handles focus events for the target and its descendants.
+
+## Features
+
+useFocusWithin handles focus interactions for an element and its descendants. Focus is "within" an element when either the element itself or a descendant element has focus. This is similar to the [:focus-within](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) pseudo class in CSS.
+
+## Usage
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { useFocusWithin } from '@sv-aria/interactions';
+
+	let events = $state<string[]>([]);
+
+	const { isFocusWithin, focusWithinProps } = useFocusWithin({
+		onFocusWithin: () => events.push('focus'),
+		onBlurWithin: () => events.push('blur'),
+		onFocusWithinChange: (isFocusWithin) =>
+			events.push(`focus within change: ${isFocusWithin}`),
+	});
+</script>
+
+<div>isFocusWithin: {isFocusWithin()}</div>
+<div
+	{...focusWithinProps}
+	style="display: inline-block; border: 1px solid gray; padding: 10px; background-color: {isFocusWithin()
+		? 'goldenrod'
+		: ''}; color: {isFocusWithin() ? 'black' : ''};"
+>
+	<label style="display: block">
+		First Name: <input />
+	</label>
+	<label style="display: block">
+		Last Name: <input />
+	</label>
+</div>
+
+<ul style="max-height: 200px; overflow: auto;">
+	{#each events as event, i (i)}
+		<li>{event}</li>
+	{/each}
+</ul>
+
+<style>
+	input {
+		background-color: #71717a;
+		border-radius: 4px;
+		outline: 2px solid #a1a1aa;
+	}
+</style>
+```
+
+## API Reference
+
+### Parameters
+
+<Parameters props={FocusWithinDocs.props} />
+
+### Events
+
+<Events props={FocusWithinDocs.events} />
+
+### Returns
+
+<Returns props={FocusWithinDocs.returns} />

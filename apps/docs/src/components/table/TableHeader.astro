@@ -1,0 +1,16 @@
+---
+import { twMerge } from 'tailwind-merge';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'thead'> {
+	className?: string;
+}
+
+const props = Astro.props;
+
+const { className, ...otherProps } = props;
+---
+
+<thead class={twMerge('[&_tr]:border-b', className)} {...otherProps}>
+	<slot />
+</thead>

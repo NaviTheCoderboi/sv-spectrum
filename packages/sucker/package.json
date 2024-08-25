@@ -1,0 +1,19 @@
+{
+	"name": "@sv-aria/sucker",
+	"version": "1.0.0",
+	"author": {
+		"name": "NaviTheCoderboi",
+		"url": "https://github.com/NaviTheCoderboi"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/NaviTheCoderboi/sv-aria",
+		"directory": "packages/sucker"
+	},
+	"main": "index.js",
+	"license": "MIT",
+	"bin": {
+		"sucker": "./index.js"
+	},
+	"type": "module"
+}

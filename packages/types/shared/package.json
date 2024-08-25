@@ -1,0 +1,29 @@
+{
+	"name": "@sv-types/shared",
+	"version": "1.0.0",
+	"author": {
+		"name": "NaviTheCoderboi",
+		"url": "https://github.com/NaviTheCoderboi"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/NaviTheCoderboi/sv-aria",
+		"directory": "packages/types/shared"
+	},
+	"main": "src/index.d.ts",
+	"type": "module",
+	"license": "MIT",
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"build": ""
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"devDependencies": {
+		"svelte": "5.0.0-next.233"
+	},
+	"peerDependencies": {
+		"svelte": "5.0.0-next.233"
+	}
+}
