@@ -12,5 +12,5 @@
     "access": "public",
     "baseBranch": "main",
     "updateInternalDependencies": "patch",
-    "ignore": ["@sv-aria/docs", "@sv-aria/test", "@sv-aria/docs-utils", "@sv-aria/sucker"]
+    "ignore": ["@sv-aria/docs", "@sv-aria/test"]
 }
