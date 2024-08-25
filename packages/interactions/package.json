@@ -11,8 +11,8 @@
 		"url": "git://github.com/NaviTheCoderboi/sv-aria",
 		"directory": "packages/interactions"
 	},
-	"type": "module",
 	"license": "MIT",
+	"type": "module",
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
