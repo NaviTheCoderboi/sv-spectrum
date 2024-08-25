@@ -28,7 +28,6 @@ jobs:
           publish: pnpm run release
           version: pnpm run changeset:version
           commit: "ci(changesets): version packages"
-          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
