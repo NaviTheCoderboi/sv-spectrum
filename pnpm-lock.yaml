@@ -142,9 +142,6 @@ importers:
 
   packages/interactions:
     dependencies:
-      '@sv-aria/docs-utils':
-        specifier: workspace:*
-        version: link:../docs-utils
       '@sv-aria/utils':
         specifier: workspace:*
         version: link:../utils
@@ -155,6 +152,9 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4(svelte@5.0.0-next.233)
     devDependencies:
+      '@sv-aria/docs-utils':
+        specifier: workspace:*
+        version: link:../docs-utils
       svelte:
         specifier: 5.0.0-next.233
         version: 5.0.0-next.233
