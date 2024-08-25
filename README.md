@@ -3,14 +3,13 @@
 	<br>
 	Build Accessible sites with sv-aria now!
 	<br>
-	 <img alt="" src="https://img.shields.io/npm/l/turbo.svg?style=for-the-badge&labelColor=000000&color=">
-
-    <h4>
+	<img alt="" src="https://img.shields.io/npm/l/turbo.svg?style=for-the-badge&labelColor=000000&color=">
+	<br>
+	<h4>
     	<a href="https://sv-aria.vercel.app/">Documentation</a>
     	<span> · </span>
     	<a href="https://github.com/NaviTheCoderboi/sv-aria/issues">Report Bug</a>
-
-  	</h4>
+	</h4>
 </div>
 
 ## Contributions

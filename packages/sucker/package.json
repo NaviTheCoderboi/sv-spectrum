@@ -1,5 +1,6 @@
 {
 	"name": "@sv-aria/sucker",
+	"private": true,
 	"version": "1.0.0",
 	"author": {
 		"name": "NaviTheCoderboi",

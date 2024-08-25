@@ -1,5 +1,6 @@
 {
 	"name": "@sv-aria/docs-utils",
+	"private": true,
 	"version": "1.0.0",
 	"author": {
 		"name": "NaviTheCoderboi",
