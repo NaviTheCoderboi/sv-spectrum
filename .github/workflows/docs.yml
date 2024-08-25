@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "apps/docs/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

@@ -41,6 +41,5 @@
 		"@sv-aria/sucker": "workspace:*",
 		"esbuild": "^0.23.1",
 		"svelte2tsx": "^0.7.16"
-	},
-	"packageManager": "pnpm@9.6.0"
+	}
 }
