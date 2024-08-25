@@ -35,13 +35,13 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"svelte": "5.0.0-next.233"
+		"svelte": "5.0.0-next.233",
+		"@sv-aria/docs-utils": "workspace:*"
 	},
 	"peerDependencies": {
 		"svelte": "5.0.0-next.233"
 	},
 	"dependencies": {
-		"@sv-aria/docs-utils": "workspace:*",
 		"@sv-aria/utils": "workspace:*",
 		"@sv-types/shared": "workspace:*",
 		"svelte-contextify": "^1.0.4"
