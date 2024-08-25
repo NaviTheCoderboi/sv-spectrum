@@ -22,8 +22,7 @@
 		"typecheck": "turbo typecheck",
 		"changeset:version": "changeset version",
 		"changeset:check": "changeset status --since=main",
-		"release": "turbo run publish",
-		"publish": "pnpm publish -r"
+		"release": "pnpm run ci && pnpm publish -r --no-git-checks"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",

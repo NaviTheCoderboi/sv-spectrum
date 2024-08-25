@@ -16,10 +16,6 @@
 		"lint": {
 			"dependsOn": ["typecheck"]
 		},
-		"publish": {
-			"dependsOn": ["build", "lint", "typecheck"],
-			"cache": false
-		},
 		"dev": {
 			"cache": false,
 			"persistent": true
