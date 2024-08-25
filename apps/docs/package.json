@@ -24,7 +24,6 @@
 		"@astrojs/starlight-tailwind": "^2.0.3",
 		"@astrojs/svelte": "^5.7.0",
 		"@astrojs/tailwind": "^5.1.0",
-		"@sv-aria/docs-utils": "workspace:*",
 		"@sv-aria/interactions": "workspace:*",
 		"@sv-aria/utils": "workspace:*",
 		"astro": "^4.10.2",

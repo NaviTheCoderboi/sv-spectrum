@@ -7,9 +7,8 @@ import type {
 	SFocusEvent,
 } from '@sv-types/shared';
 import type { FocusEventHandler } from 'svelte/elements';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		focusProps: {
 			description: 'Props for useFocus hook, includes event handlers',

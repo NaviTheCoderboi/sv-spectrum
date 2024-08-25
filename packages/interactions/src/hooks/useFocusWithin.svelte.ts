@@ -4,9 +4,8 @@ import type {
 	FocusableElement,
 } from '@sv-types/shared';
 import { useBlurEvent } from '../utils/utils.svelte';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		focusWithinProps: {
 			description:

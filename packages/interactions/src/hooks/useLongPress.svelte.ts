@@ -5,9 +5,8 @@ import type {
 	LongPressEvent,
 } from '@sv-types/shared';
 import { usePress } from './usePress.svelte';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		longPressProps: {
 			description: 'Props for useLongPress hook, includes event handlers',

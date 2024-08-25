@@ -5,9 +5,8 @@ import {
 	isVirtualClick,
 	isSSR,
 } from '@sv-aria/utils';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		FocusVisbibleProps: {
 			description:

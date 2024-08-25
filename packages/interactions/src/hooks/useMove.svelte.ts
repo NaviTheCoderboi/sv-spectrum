@@ -4,9 +4,8 @@ import {
 	restoreTextSelection,
 } from '../utils/textSelection';
 import type { DOMAttributes, MoveEvents, PointerType } from '@sv-types/shared';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		moveProps: {
 			description: 'Props for useMove hook, includes event handlers',

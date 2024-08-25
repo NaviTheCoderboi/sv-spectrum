@@ -1,8 +1,7 @@
 import { createEventHandler } from '../utils/createEventHandler';
 import type { DOMAttributes, KeyboardEvents } from '@sv-types/shared';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		keyboardProps: {
 			description: 'Props for useKeyboard hook, includes event handlers',

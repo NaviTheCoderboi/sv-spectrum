@@ -24,10 +24,10 @@ import {
 	restoreTextSelection,
 } from '../utils/textSelection';
 import { onMount } from 'svelte';
-import type { APISchema } from '@sv-aria/docs-utils';
+
 import type { Action } from 'svelte/action';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		pressProps: {
 			description: 'Props for usePress hook, includes event handlers',

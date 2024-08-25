@@ -1,9 +1,8 @@
-import type { APISchema } from '@sv-aria/docs-utils';
 import { getOwnerDocument } from '@sv-aria/utils';
 import type { STarget } from '@sv-types/shared';
 import type { Action } from 'svelte/action';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		interactOutsideProps: {
 			description:

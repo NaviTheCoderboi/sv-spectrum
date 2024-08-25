@@ -1,8 +1,7 @@
 import type { DOMAttributes, HoverEvents, PointerType } from '@sv-types/shared';
 import { onMount } from 'svelte';
-import type { APISchema } from '@sv-aria/docs-utils';
 
-export const docs: APISchema = {
+export const docs = {
 	props: {
 		hoverProps: {
 			description: 'Props for useHover hook, includes event handlers',
