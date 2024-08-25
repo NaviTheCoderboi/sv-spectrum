@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"dev": "turbo run dev",
-		"ci": "turbo build:packages lint typecheck",
+		"ci": "pnpm run build:packages && turbo lint typecheck",
 		"format": "prettier --write .",
 		"build": "turbo run build",
 		"build:packages": "turbo run build --filter=./packages/*",
