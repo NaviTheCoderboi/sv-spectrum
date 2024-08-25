@@ -18,11 +18,16 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v2
+      - name: Setup
+        uses: ./.github/setup
+      - name: Build
+        shell: bash
+        run: pnpm astro build
+        working-directory: ./apps/docs
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/docs
-          package-manager: pnpm@latest
+          path: ./apps/docs/dist
 
   deploy:
     needs: build
