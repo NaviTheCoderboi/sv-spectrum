@@ -14,6 +14,9 @@ export default defineConfig({
 		}),
 		starlight({
 			title: 'Svelte Aria',
+			logo: {
+				src: './src/assets/svelte-aria.png',
+			},
 			customCss: [
 				'./src/styles/tailwind.css',
 				'./src/styles/fonts.css',
@@ -42,6 +45,12 @@ export default defineConfig({
 							slug: 'overview/getting-started',
 						},
 					],
+				},
+				{
+					label: 'Guides',
+					autogenerate: {
+						directory: 'guides',
+					},
 				},
 				{
 					label: 'Interactions',

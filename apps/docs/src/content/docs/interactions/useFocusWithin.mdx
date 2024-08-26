@@ -34,9 +34,8 @@ useFocusWithin handles focus interactions for an element and its descendants. Fo
 <div>isFocusWithin: {isFocusWithin()}</div>
 <div
 	{...focusWithinProps}
-	style="display: inline-block; border: 1px solid gray; padding: 10px; background-color: {isFocusWithin()
-		? 'goldenrod'
-		: ''}; color: {isFocusWithin() ? 'black' : ''};"
+	class="not-focus-within"
+	class:focus-within={isFocusWithin()}
 >
 	<label style="display: block">
 		First Name: <input />
@@ -54,9 +53,22 @@ useFocusWithin handles focus interactions for an element and its descendants. Fo
 
 <style>
 	input {
-		background-color: #71717a;
-		border-radius: 4px;
-		outline: 2px solid #a1a1aa;
+		outline: 2px solid #52525b;
+	}
+
+	input:focus {
+		outline: 2px solid #fff;
+	}
+
+	.not-focus-within {
+		display: inline-block;
+		border: 1px solid gray;
+		padding: 10px;
+	}
+
+	.focus-within {
+		background-color: goldenrod;
+		color: black;
 	}
 </style>
 ```

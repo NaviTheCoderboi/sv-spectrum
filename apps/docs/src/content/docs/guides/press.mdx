@@ -1,0 +1,98 @@
+---
+title: More on press
+description: Learn more about the usePress hook.
+---
+
+As mentioned in the [usePress](/docs/interactions/usePress) documentation, the `usePress` hook is a powerful tool for handling press interactions. This guide will cover more advanced use cases and best practices for using the `usePress` hook.
+
+## Introduction
+
+The `usePress` hook is a versatile tool for handling press interactions. It can be used to handle a wide range of press interactions, from simple button presses to more complex interactions like long presses and key presses. The `usePress` hook provides a flexible API that allows you to customize the behavior of your press interactions to suit your needs.
+
+## Advanced use cases
+
+### Pressable component
+
+`@sv-aria/interactions` provides a `Pressable` component that simplifies handling press interactions for a component. The `Pressable` component can be provided with a snippet as a children to render a pressable.
+
+Here is an example of how to use the `Pressable` component:
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { Pressable } from '@sv-aria/interactions';
+</script>
+
+<Pressable onPress={() => alert('pressed')}>
+	{#snippet children(props)}
+		<button {...props}> click me </button>
+	{/snippet}
+</Pressable>
+
+<style>
+	button {
+		background-color: #f43f5e;
+		color: white;
+		padding: 8px 16px;
+		border-radius: 24px;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		transition: all 0.2s;
+	}
+
+	button:hover {
+		background-color: #e11d48;
+		scale: 1.05;
+	}
+</style>
+```
+
+You might be asking yourself, "Why use the `Pressable` component when I can use the `usePress` hook directly?" The `Pressable` component provides a more declarative way to handle press interactions, making it easier to understand and maintain your code.
+
+### PressResponder component
+
+`@sv-aria/interactions` provides a `PressResponder` component that simplifies handling press interactions of a child component that is a pressable, i.e that uses a `usePress` hook.
+
+Here is an example of how to use the `PressResponder` component:
+
+```svelte live props={{ "client:visible": true }}
+<script lang="ts">
+	import { PressResponder, Pressable } from '@sv-aria/interactions';
+
+	let ref = $state<HTMLButtonElement | null>(null);
+</script>
+
+<PressResponder onPress={() => alert('responding to child')}>
+	<Pressable onPress={() => alert('pressed')} {ref}>
+		{#snippet children(props)}
+			<button {...props} bind:this={ref}> click me </button>
+		{/snippet}
+	</Pressable>
+</PressResponder>
+
+<style>
+	button {
+		background-color: #f43f5e;
+		color: white;
+		padding: 8px 16px;
+		border-radius: 24px;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		transition: all 0.2s;
+	}
+
+	button:hover {
+		background-color: #e11d48;
+		scale: 1.05;
+	}
+</style>
+```
+
+Again you might be asking yourself, "Why use the `PressResponder` component when I can use the `usePress` hook directly?" The `PressResponder` component provides a more declarative way to handle press interactions of a child component that is a pressable, making it easier to understand and maintain your code.
+
+This can be used as a trigger for a parent component to respond to a press interaction of a child component.
+
+## Conclusion
+
+The `usePress` hook is a powerful tool for handling press interactions. By following the best practices outlined in this guide, you can create more robust and maintainable press interactions in your Svelte applications.

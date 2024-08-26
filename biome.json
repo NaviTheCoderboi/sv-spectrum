@@ -47,6 +47,19 @@
 					}
 				}
 			}
+		},
+		{
+			"include": ["**/*.svelte.ts"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedImports": "warn"
+					},
+					"style": {
+						"useConst": "warn"
+					}
+				}
+			}
 		}
 	]
 }

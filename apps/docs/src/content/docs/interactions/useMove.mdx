@@ -33,39 +33,33 @@ useMove handles move interactions across mouse, touch, and keyboard. A move inte
 
 	let events = $state<string[]>([]);
 	let color = $state('black');
-	let position = $state({ x: 0, y: 0 });
+	let x = $state(0);
+	let y = $state(0);
 
-	const clamp = (pos: number) =>
+	let clamp = (pos: number) =>
 		Math.min(Math.max(pos, 0), CONTAINER_SIZE - BALL_SIZE);
 
-	let { moveProps } = useMove({
+	const { moveProps } = useMove({
 		onMoveStart: (e) => {
 			color = 'red';
 			events.push(`move start with pointerType = ${e.pointerType}`);
 		},
 		onMove: (e) => {
-			let _x = position.x;
-			let _y = position.y;
-
 			if (e.pointerType === 'keyboard') {
-				_x = clamp(position.x);
-				_y = clamp(position.y);
+				x = clamp(x);
+				y = clamp(y);
 			}
 
-			position = {
-				x: e.deltaX + _x,
-				y: e.deltaY + _y,
-			};
+			x += e.deltaX;
+			y += e.deltaY;
 
 			events.push(
 				`move with pointerType = ${e.pointerType}, deltaX = ${e.deltaX}, deltaY = ${e.deltaY}`,
 			);
 		},
 		onMoveEnd: (e) => {
-			position = {
-				x: clamp(position.x),
-				y: clamp(position.y),
-			};
+			x = clamp(x);
+			y = clamp(y);
 
 			color = 'black';
 			events.push(`move end with pointerType = ${e.pointerType}`);
@@ -74,15 +68,15 @@ useMove handles move interactions across mouse, touch, and keyboard. A move inte
 </script>
 
 <div
-	style="width: {CONTAINER_SIZE}px; height: {CONTAINER_SIZE}px; background: white; border: 1px solid black; position: relative; touchAction: none;"
+	style="width: {CONTAINER_SIZE}px; height: {CONTAINER_SIZE}px; background: white; border: 1px solid black; position: relative; touch-action: none;"
 >
 	<div
 		{...moveProps}
 		tabindex={0}
 		style="width: {BALL_SIZE}px; height: {BALL_SIZE}px; border-radius: 100%; position: absolute; left: {clamp(
-			position.x,
-		)}px; top: {clamp(position.y)}px; background-color: {color};"
-	></div>
+			x,
+		)}px; top: {clamp(y)}px; background: {color};"
+	/>
 </div>
 
 <ul style="max-height: 200px; overflow: auto;">

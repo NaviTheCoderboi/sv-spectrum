@@ -23,9 +23,6 @@ import {
 	disableTextSelection,
 	restoreTextSelection,
 } from '../utils/textSelection';
-import { onMount } from 'svelte';
-
-import type { Action } from 'svelte/action';
 
 export const docs = {
 	props: {
@@ -415,7 +412,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 		}
 	};
 
-	const pressProps: DOMAttributes<T> = {
+	const pressProps: DOMAttributes = {
 		onkeydown: (e) => {
 			if (
 				isValidKeyboardEvent(e, e.currentTarget) &&
@@ -427,7 +424,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 
 				let shouldStopPropagation = true;
 				if (!ref.isPressed && !e.repeat) {
-					ref.target = e.currentTarget;
+					ref.target = e.currentTarget as T;
 					ref.isPressed = true;
 					shouldStopPropagation = triggerPressStart(e, 'keyboard');
 
@@ -466,11 +463,12 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 			}
 		},
 		onclick: (e) => {
-			if (!e.currentTarget.contains(e.target as Element)) {
+			if (e && !e.currentTarget.contains(e.target as Element)) {
 				return;
 			}
 
 			if (
+				e &&
 				e.button === 0 &&
 				!ref.isTriggeringEvent &&
 				!(openLink as any).isOpening
@@ -561,8 +559,6 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 				return;
 			}
 
-			// Due to browser inconsistencies, especially on mobile browsers, we prevent
-			// default on pointer down and handle focusing the pressable element ourselves.
 			if (shouldPreventDefault(e.currentTarget as Element)) {
 				e.preventDefault();
 			}
@@ -574,7 +570,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 				ref.isPressed = true;
 				ref.isOverTarget = true;
 				ref.activePointerId = e.pointerId;
-				ref.target = e.currentTarget;
+				ref.target = e.currentTarget as T;
 
 				if (!isDisabled && !preventFocusOnPress) {
 					focusWithoutScrolling(e.currentTarget);
@@ -708,7 +704,6 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 			if (!e.currentTarget.contains(e.target as Element)) {
 				return;
 			}
-
 			cancel(e);
 		};
 	} else {
@@ -731,7 +726,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 
 			ref.isPressed = true;
 			ref.isOverTarget = true;
-			ref.target = e.currentTarget;
+			ref.target = e.currentTarget as T;
 			ref.pointerType = isVirtualClick(e) ? 'virtual' : 'mouse';
 
 			if (!isDisabled && !preventFocusOnPress) {
@@ -856,7 +851,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 			ref.ignoreEmulatedMouseEvents = true;
 			ref.isOverTarget = true;
 			ref.isPressed = true;
-			ref.target = e.currentTarget;
+			ref.target = e.currentTarget as T;
 			ref.pointerType = 'touch';
 
 			if (!isDisabled && !preventFocusOnPress) {
@@ -864,11 +859,11 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 			}
 
 			if (!allowTextSelectionOnPress) {
-				disableTextSelection(ref.target);
+				disableTextSelection(ref.target!);
 			}
 
 			const shouldStopPropagation = triggerPressStart(
-				createTouchEvent(ref.target, e),
+				createTouchEvent(ref.target!, e),
 				ref.pointerType,
 			);
 			if (shouldStopPropagation) {
@@ -997,7 +992,7 @@ export const usePress = <T extends FocusableElement = FocusableElement>(
 		};
 	}
 
-	onMount(() => {
+	$effect(() => {
 		return () => {
 			if (!allowTextSelectionOnPress) {
 				restoreTextSelection(ref.target ?? undefined);
@@ -1053,8 +1048,7 @@ const getTouchById = (
 	pointerId: null | number,
 ): null | Touch => {
 	const changedTouches = event.changedTouches;
-	for (let i = 0; i < changedTouches.length; i++) {
-		const touch = changedTouches[i];
+	for (const touch of changedTouches) {
 		if (touch.identifier === pointerId) {
 			return touch;
 		}
@@ -1068,7 +1062,7 @@ const createTouchEvent = (
 ): EventBase => {
 	let clientX = 0;
 	let clientY = 0;
-	if (e.targetTouches.length === 1) {
+	if (e.targetTouches && e.targetTouches.length === 1) {
 		clientX = e.targetTouches[0].clientX;
 		clientY = e.targetTouches[0].clientY;
 	}

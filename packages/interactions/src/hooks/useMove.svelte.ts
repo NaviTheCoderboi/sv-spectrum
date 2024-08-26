@@ -179,10 +179,7 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 					e.pageX - (state.lastPosition?.pageX ?? 0),
 					e.pageY - (state.lastPosition?.pageY ?? 0),
 				);
-				state.lastPosition = {
-					pageX: e.pageX,
-					pageY: e.pageY,
-				};
+				state.lastPosition = { pageX: e.pageX, pageY: e.pageY };
 			}
 		};
 		const onMouseUp = (e: MouseEvent) => {
@@ -197,21 +194,17 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 				start();
 				e.stopPropagation();
 				e.preventDefault();
-				state.lastPosition = {
-					pageX: e.pageX,
-					pageY: e.pageY,
-				};
+				state.lastPosition = { pageX: e.pageX, pageY: e.pageY };
 				addGlobalListener(window, 'mousemove', onMouseMove, false);
 				addGlobalListener(window, 'mouseup', onMouseUp, false);
 			}
 		};
-
 		const onTouchMove = (e: TouchEvent) => {
-			const touch = [...e.changedTouches].findIndex(
+			let touch = [...e.changedTouches].findIndex(
 				({ identifier }) => identifier === state.id,
 			);
 			if (touch >= 0) {
-				const { pageX, pageY } = e.changedTouches[touch];
+				let { pageX, pageY } = e.changedTouches[touch];
 				move(
 					e,
 					'touch',
@@ -222,7 +215,7 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 			}
 		};
 		const onTouchEnd = (e: TouchEvent) => {
-			const touch = [...e.changedTouches].findIndex(
+			let touch = [...e.changedTouches].findIndex(
 				({ identifier }) => identifier === state.id,
 			);
 			if (touch >= 0) {
@@ -238,7 +231,7 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 				return;
 			}
 
-			const { pageX, pageY, identifier } = e.changedTouches[0];
+			let { pageX, pageY, identifier } = e.changedTouches[0];
 			start();
 			e.stopPropagation();
 			e.preventDefault();
@@ -251,7 +244,7 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 	} else {
 		const onPointerMove = (e: PointerEvent) => {
 			if (e.pointerId === state.id) {
-				const pointerType = (e.pointerType || 'mouse') as PointerType;
+				let pointerType = (e.pointerType || 'mouse') as PointerType;
 
 				move(
 					e,
@@ -259,16 +252,13 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 					e.pageX - (state.lastPosition?.pageX ?? 0),
 					e.pageY - (state.lastPosition?.pageY ?? 0),
 				);
-				state.lastPosition = {
-					pageX: e.pageX,
-					pageY: e.pageY,
-				};
+				state.lastPosition = { pageX: e.pageX, pageY: e.pageY };
 			}
 		};
 
 		const onPointerUp = (e: PointerEvent) => {
 			if (e.pointerId === state.id) {
-				const pointerType = (e.pointerType || 'mouse') as PointerType;
+				let pointerType = (e.pointerType || 'mouse') as PointerType;
 				end(e, pointerType);
 				state.id = null;
 				removeGlobalListener(
@@ -286,16 +276,12 @@ export const useMove = <T extends HTMLElement = HTMLElement>(
 				);
 			}
 		};
-
 		moveProps.onpointerdown = (e: PointerEvent) => {
 			if (e.button === 0 && state.id == null) {
 				start();
 				e.stopPropagation();
 				e.preventDefault();
-				state.lastPosition = {
-					pageX: e.pageX,
-					pageY: e.pageY,
-				};
+				state.lastPosition = { pageX: e.pageX, pageY: e.pageY };
 				state.id = e.pointerId;
 				addGlobalListener(window, 'pointermove', onPointerMove, false);
 				addGlobalListener(window, 'pointerup', onPointerUp, false);
